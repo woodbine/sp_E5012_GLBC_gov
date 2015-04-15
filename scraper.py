@@ -34,16 +34,22 @@ for pageLink in pageLinks:
   	html2 = urllib2.urlopen(pageUrl)
 	soup2 = BeautifulSoup(html)
 
-	fileLink = soup2.find('div',{'class':'downloadNow'})
-	fileUrl = fileLink.a['href']
+	fileLinks = soup2.findAll('div',{'class':'downloadNow'})
 	
-	# create the right strings for the new filename
-	title = title.upper().strip()
-	csvYr = title.split(' ')[1]
-	csvMth = title.split(' ')[0][:3]
-	csvMth = convert_mth_strings(csvMth);
-
-	filename = entity_id + "_" + csvYr + "_" + csvMth
-	todays_date = str(datetime.now())
-	scraperwiki.sqlite.save(unique_keys=['l'], data={"l": fileUrl, "f": filename, "d": todays_date })
-	print filename
+	for fileLink in fileLinks:
+		print fileLink
+		
+		'''
+		fileUrl = fileLink.a['href']
+		
+		# create the right strings for the new filename
+		title = title.upper().strip()
+		csvYr = title.split(' ')[1]
+		csvMth = title.split(' ')[0][:3]
+		csvMth = convert_mth_strings(csvMth);
+	
+		filename = entity_id + "_" + csvYr + "_" + csvMth
+		todays_date = str(datetime.now())
+		scraperwiki.sqlite.save(unique_keys=['l'], data={"l": fileUrl, "f": filename, "d": todays_date })
+		print filename
+		'''
