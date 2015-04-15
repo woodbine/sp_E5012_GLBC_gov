@@ -35,7 +35,7 @@ for pageLink in pageLinks:
 	soup2 = BeautifulSoup(html)
 
 	fileLink = soup2.find('div',{'class':'downloadNow'})
-	fileUrl = fileLink['href']
+	fileUrl = fileLink.a['href']
 	
 	# create the right strings for the new filename
 	title = title.upper().strip()
