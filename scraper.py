@@ -45,7 +45,7 @@ for pageLink in pageLinks:
 			filename = "Qfile_" + entity_id + "_" + csvYr + "_" + csvMth
 		else:
 			csvYr = title.split(' ')[1]
-			if csvYr = 'PAYMENTS':
+			if 'PAYMENTS' in csvYr:
 				set csvYr == '2013' # adjust for April 2013 file which doesn't have a year.
 			filename = entity_id + "_" + csvYr + "_" + csvMth
 		
