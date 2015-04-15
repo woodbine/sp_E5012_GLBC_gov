@@ -46,7 +46,7 @@ for pageLink in pageLinks:
 		else:
 			csvYr = title.split(' ')[1]
 			if 'PAYMENTS' in csvYr:
-				set csvYr = '2013' # adjust for April 2013 file which doesn't have a year.
+				csvYr = '2013' # adjust for April 2013 file which doesn't have a year.
 			filename = entity_id + "_" + csvYr + "_" + csvMth
 		
 		
