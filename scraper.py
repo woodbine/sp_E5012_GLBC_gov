@@ -27,7 +27,7 @@ pageLinks = soup.findAll('a')
 
 for pageLink in pageLinks:
   fileUrl = pageLink['href']
-  if ('_payments_over_and_','_csv') in href:
+  if ('_payments_over_and_pound500_csv') in href:
   	# add the right prefix onto the url
 	  	title = pageLink.contents[0]
 		# create the right strings for the new filename
