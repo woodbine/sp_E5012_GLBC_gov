@@ -30,19 +30,13 @@ for pageLink in pageLinks:
   if ('_payments_over_and_pound500_csv') in pageUrl:
   	# add the right prefix onto the url
   	title = pageLink.contents[0]
-	print pageUrl
-	'''
   	html2 = urllib2.urlopen(pageUrl)
 	soup2 = BeautifulSoup(html2)
-
-	fileLinks = soup2.findAll('div',{'class':'downloadNow'})
+	fileLinks = soup2.find('h3',{'class':'downloadNow'})
 	
 	for fileLink in fileLinks:
 		print fileLink
-		
-		
 		fileUrl = fileLink.a['href']
-		
 		# create the right strings for the new filename
 		title = title.upper().strip()
 		csvYr = title.split(' ')[1]
@@ -53,4 +47,4 @@ for pageLink in pageLinks:
 		todays_date = str(datetime.now())
 		scraperwiki.sqlite.save(unique_keys=['l'], data={"l": fileUrl, "f": filename, "d": todays_date })
 		print filename
-		'''
+		
