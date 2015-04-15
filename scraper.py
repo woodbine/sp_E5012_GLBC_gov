@@ -36,7 +36,7 @@ for pageLink in pageLinks:
 	
 	for fileLink in fileLinks:
 		print fileLink
-		fileUrl = fileLink.a['href']
+		fileUrl = fileLink['href']
 		# create the right strings for the new filename
 		title = title.upper().strip()
 		csvYr = title.split(' ')[1]
