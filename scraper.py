@@ -26,17 +26,24 @@ soup = BeautifulSoup(html)
 pageLinks = soup.findAll('a')
 
 for pageLink in pageLinks:
-  fileUrl = pageLink['href']
-  if ('_payments_over_and_pound500_csv') in fileUrl:
+  pageUrl = pageLink['href']
+  if ('_payments_over_and_pound500_csv') in pageUrl:
   	# add the right prefix onto the url
-	  	title = pageLink.contents[0]
-		# create the right strings for the new filename
-		title = title.upper().strip()
-		csvYr = title.split(' ')[1]
-		csvMth = title.split(' ')[0][:3]
-		csvMth = convert_mth_strings(csvMth);
+  	title = pageLink.contents[0]
 	
-		filename = entity_id + "_" + csvYr + "_" + csvMth
-		todays_date = str(datetime.now())
-		scraperwiki.sqlite.save(unique_keys=['l'], data={"l": fileUrl, "f": filename, "d": todays_date })
-		print filename
+  	html2 = urllib2.urlopen(pageUrl)
+	soup2 = BeautifulSoup(html)
+
+	fileLink = soup2.find('div',{'class':'downloadNow'})
+	fileUrl = fileLink['href']
+	
+	# create the right strings for the new filename
+	title = title.upper().strip()
+	csvYr = title.split(' ')[1]
+	csvMth = title.split(' ')[0][:3]
+	csvMth = convert_mth_strings(csvMth);
+
+	filename = entity_id + "_" + csvYr + "_" + csvMth
+	todays_date = str(datetime.now())
+	scraperwiki.sqlite.save(unique_keys=['l'], data={"l": fileUrl, "f": filename, "d": todays_date })
+	print filename
