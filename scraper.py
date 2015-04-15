@@ -32,7 +32,7 @@ for pageLink in pageLinks:
   	title = pageLink.contents[0]
 	
   	html2 = urllib2.urlopen(pageUrl)
-	soup2 = BeautifulSoup(html)
+	soup2 = BeautifulSoup(html2)
 
 	fileLinks = soup2.findAll('div',{'class':'downloadNow'})
 	
